@@ -8,9 +8,38 @@ function Condition(){
     ]
 
     const loading = false
-    const showComments = false
+    const showComments = true
 
     if(loading == true) return <div><h2>Loading...</h2></div>
+
+    const commentBlock = (
+        <ul>
+            { comments.map((comment, index) => (
+                <li key={index} >{comment.text}</li>
+            ))  }
+        </ul>
+    )
+
+    // EXAMPLE ONE
+    // { showComments ? 'YES' : 'NO'}
+
+    // EXAMPLE TWO
+    // { showComments ? (
+    //     <ul>
+    //         { comments.map((comment, index) => (
+    //             <li key={index} >{comment.text}</li>
+    //         ))  }
+    //     </ul>
+    // ) : 'NO' }
+
+    // EXAMPLE THREE
+    // { showComments && (
+    //     <ul>
+    //         { comments.map((comment, index) => (
+    //             <li key={index} >{comment.text}</li>
+    //         ))  }
+    //     </ul>
+    // ) }
 
     return(
         <div>
@@ -18,13 +47,7 @@ function Condition(){
             <p>{ description }</p>
             <h3>Comments ({ comments.length })</h3>
 
-            { showComments ? 'YES' : 'NO'}
-
-            <ul>
-                { comments.map((comment, index) => (
-                    <li key={index} >{comment.text}</li>
-                ))  }
-            </ul>
+            { showComments && commentBlock }
 
         </div>
     )
